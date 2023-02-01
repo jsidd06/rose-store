@@ -54,7 +54,9 @@ export default function ProductScreen() {
                 </div>
               </li>
               <li>
-                <button className="primary block">Add to Cart</button>
+                {product.countInStock > 0 ? (
+                  <button className="primary block">Add to Cart</button>
+                ) : null}
               </li>
             </ul>
           </div>
