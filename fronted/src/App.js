@@ -3,10 +3,10 @@ import data from "./data";
 
 function App() {
   return (
-    <div class="grid-container">
-      <header class="row">
+    <div className="grid-container">
+      <header className="row">
         <div>
-          <a class="brand" href="index.html">
+          <a className="brand" href="index.html">
             Rose Store
           </a>
         </div>
@@ -16,13 +16,13 @@ function App() {
         </div>
       </header>
       <main>
-        <div class="row center">
+        <div className="row center">
           {data.products.map((product) => (
             <Product product={product} key={product._id} />
           ))}
         </div>
       </main>
-      <footer class="row center">All right reserved</footer>
+      <footer className="row center">All right reserved</footer>
     </div>
   );
 }
