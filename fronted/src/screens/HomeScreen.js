@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "../components/Product";
-import * as EndPoint from "../Api/services";
-import Axios from "../Api/Axios";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../redux/actions/productActions";
 
 export default function HomeScreen() {
-  const [allDataProduct, setAllDataProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
 
   useEffect(() => {
-    setLoading(true);
-    Axios.get(EndPoint.ALL_PRODUCT_LIST)
-      .then((res) => {
-        setAllDataProduct(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   return (
     <div className="row center">
@@ -30,7 +21,7 @@ export default function HomeScreen() {
       ) : error ? (
         <MessageBox variant="danger"> {error}</MessageBox>
       ) : (
-        allDataProduct.map((product) => (
+        products.map((product) => (
           <Product product={product} key={product._id} />
         ))
       )}
