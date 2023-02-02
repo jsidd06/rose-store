@@ -15,3 +15,19 @@ export const productListReducer = (
       return state;
   }
 };
+
+export const productDetailsReducer = (
+  state = { loading: true, product: {} },
+  action
+) => {
+  switch (action.type) {
+    case TYPE.PRODUCT_DETAILS_REQUEST:
+      return { loading: true };
+    case TYPE.PRODUCT_DETAILS_SUCCESS:
+      return { loading: false, product: action.payload };
+    case TYPE.PRODUCT_DETAILS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

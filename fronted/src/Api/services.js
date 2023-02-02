@@ -1,1 +1,1 @@
-export const ALL_PRODUCT_LIST = "/api/product";
+export const ALL_PRODUCT_LIST = "/api/products";
