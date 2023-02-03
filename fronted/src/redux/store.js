@@ -1,11 +1,19 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import * as REDUCERS from "./reducers/productReducers";
+import * as PRODUCT_REDUCERS from "./reducers/productReducers";
+import * as CART_REDUCERS from "./reducers/cartReducer";
 
-const initialState = {};
+const initialState = {
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
+};
 const reducer = combineReducers({
-  productList: REDUCERS.productListReducer,
-  productDetails: REDUCERS.productDetailsReducer,
+  productList: PRODUCT_REDUCERS.productListReducer,
+  productDetails: PRODUCT_REDUCERS.productDetailsReducer,
+  cart: CART_REDUCERS.cartReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

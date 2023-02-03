@@ -1,4 +1,4 @@
-import * as TYPE from "../constants/productContants";
+import * as TYPE from "../constants/productConstants";
 
 export const productListReducer = (
   state = { loading: true, products: [] },

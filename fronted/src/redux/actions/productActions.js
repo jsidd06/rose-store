@@ -1,4 +1,4 @@
-import * as TYPES from "../constants/productContants";
+import * as TYPES from "../constants/productConstants";
 import * as EndPoint from "../../Api/services";
 import Axios from "../../Api/Axios";
 
