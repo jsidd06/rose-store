@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { detailsProduct } from "../redux/actions/productActions";
 
-export default function ProductScreen(props) {
+export default function ProductScreen() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
     dispatch(detailsProduct(id));
   }, [dispatch, id]);
+
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <div>
@@ -72,11 +78,37 @@ export default function ProductScreen(props) {
                       </div>
                     </div>
                   </li>
-                  <li>
-                    {product.countInStock > 0 ? (
-                      <button className="primary block">Add to Cart</button>
-                    ) : null}
-                  </li>
+                  {product.countInStock > 0 && (
+                    <Fragment>
+                      <li>
+                        <div className="row">
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <button
+                          onClick={addToCartHandler}
+                          className="primary block"
+                        >
+                          Add to Cart
+                        </button>
+                      </li>
+                    </Fragment>
+                  )}
                 </ul>
               </div>
             </div>
