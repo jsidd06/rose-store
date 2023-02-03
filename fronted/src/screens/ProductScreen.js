@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { detailsProduct } from "../redux/actions/productActions";
+import { addToCart } from "../redux/actions/cartActions";
 
 export default function ProductScreen() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function ProductScreen() {
   }, [dispatch, id]);
 
   const addToCartHandler = () => {
+    dispatch(addToCart(id, qty));
     navigate(`/cart/${id}?qty=${qty}`);
   };
 

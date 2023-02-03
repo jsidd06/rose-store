@@ -96,3 +96,7 @@
     5. Implement remove from cart action
 15. Change Gitignore file
     1. React.js gitignore
+16. Implement Remove From Cart Action
+    1. create removeFromCart constants, actions and reducers
+    2. add reducer to store.js
+    3. use action in CartScreen.js

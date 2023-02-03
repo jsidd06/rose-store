@@ -6,25 +6,19 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../redux/actions/cartActions";
+import { addToCart, removeFromCart } from "../redux/actions/cartActions";
 import MessageBox from "../components/MessageBox";
 
 export default function CartScreen() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const [qty] = useSearchParams();
-  const QTY = qty.get("qty");
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  useEffect(() => {
-    dispatch(addToCart(id, QTY));
-  }, [dispatch, id, QTY]);
-
   const removeFromCartHandler = (id) => {
     // delete action
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -90,7 +84,7 @@ export default function CartScreen() {
           <ul>
             <li>
               <h2>
-                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)}
+                Subtotal ({cartItems.reduce((a, c) => a + Number(c.qty), 0)}
                 items) : ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </h2>
             </li>
