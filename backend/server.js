@@ -1,12 +1,13 @@
 import dotenv from "dotenv";
 import express from "express";
-import data from "./data.js";
 import cors from "cors";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouters.js";
+import productRouter from "./routers/productRoute.js";
 
+// DOTENV
 dotenv.config();
-
+// MONGOOSE DB CONNECTED
 mongoose.set("strictQuery", false);
 mongoose
   .connect(process.env.MONGODB_URL, {})
@@ -18,24 +19,16 @@ mongoose
   });
 
 const app = express();
+// CORS API ERROR
 app.use(cors());
+// JSON FORMATE DATA
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
-});
-
-app.get("/api/products/:id", (req, res) => {
-  const product = data.products.find((x) => x._id === req.params.id);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product not Found" });
-  }
-});
-
+// USERS API
 app.use("/api/users", userRouter);
-
+// PRODUCTS API
+app.use("/api/products", productRouter);
+// SERVER READY ROUTE
 app.get("/", (req, res) => {
   res.send("server is ready");
 });
@@ -45,8 +38,8 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
+// PORT LOCALHOST
 const PORT = process.env.PORT || 5000;
-
 app.listen(5000, () => {
   console.log(`server at http://localhost:${PORT}`);
 });

@@ -125,3 +125,8 @@
     2. render email and password fields
     3. create signin constants, actions and reducers
     4. Update Header based on user login
+20. Create Sample Products In MongoDB
+    1. create models/productModel.js
+    2. create productSchema and productModel
+    3. create productRoute
+    4. Seed sample data
