@@ -19,7 +19,8 @@ mongoose
 
 const app = express();
 app.use(cors());
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.get("/api/products", (req, res) => {
   res.send(data.products);
 });
