@@ -130,3 +130,7 @@
     2. create productSchema and productModel
     3. create productRoute
     4. Seed sample data
+21. Implement SignIn Action
+    1. create signin constants, actions and reducers
+    2. add reducer to store.js
+    3. use action in SigninScreen.js
