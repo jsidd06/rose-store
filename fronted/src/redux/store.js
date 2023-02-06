@@ -5,6 +5,11 @@ import * as CART_REDUCERS from "./reducers/cartReducer";
 import * as USER_REDUCERS from "./reducers/userReducer";
 
 const initialState = {
+  userSignIn: {
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+  },
   cart: {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
