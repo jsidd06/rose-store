@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/actions/cartActions";
@@ -10,6 +10,8 @@ export default function CartScreen() {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const userSignIn = useSelector((state) => state.userSignIn);
+  const { userInfo } = userSignIn;
 
   const removeFromCartHandler = (id) => {
     // delete action
@@ -17,7 +19,11 @@ export default function CartScreen() {
   };
 
   const checkoutHandler = () => {
-    navigation(`/signin?redirect=shipping`);
+    if (userInfo) {
+      navigation("/shipping");
+    } else {
+      navigation("/signin");
+    }
   };
 
   return (
