@@ -21,6 +21,7 @@ const reducer = combineReducers({
   productDetails: PRODUCT_REDUCERS.productDetailsReducer,
   cart: CART_REDUCERS.cartReducer,
   userSignIn: USER_REDUCERS.userSignInReducer,
+  userRegister: USER_REDUCERS.userRegisterReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

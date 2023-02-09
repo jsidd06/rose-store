@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { sign_out } from "./redux/actions/userAction";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 import SignInScreen from "./screens/SignInScreen";
 
 function App() {
@@ -46,13 +47,16 @@ function App() {
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">Sign In</Link>
+              <Fragment>
+                <Link to="/signin">Sign In</Link>
+              </Fragment>
             )}
           </div>
         </header>
         <main>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
             <Route path="/cart/:id?" element={<CartScreen />} />
             <Route path="/signin" element={<SignInScreen />} />

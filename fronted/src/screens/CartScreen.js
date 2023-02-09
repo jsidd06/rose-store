@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/actions/cartActions";
@@ -21,8 +21,10 @@ export default function CartScreen() {
   const checkoutHandler = () => {
     if (userInfo) {
       navigation("/shipping");
-    } else {
+    } else if (userInfo) {
       navigation("/signin");
+    } else {
+      navigation("/register");
     }
   };
 
