@@ -159,3 +159,6 @@
     2. create orderModel
     3. create orderRouter
     4. create post order route
+27. Implement PlaceOrder Action
+    1. handle place order button click
+    2. create place order constants, action and reducer
