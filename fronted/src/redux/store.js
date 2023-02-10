@@ -29,6 +29,7 @@ const reducer = combineReducers({
   userRegister: USER_REDUCERS.userRegisterReducer,
   orderCreate: ORDER_REDUCERS.orderCreateReducer,
   orderDetails: ORDER_REDUCERS.orderDetailsReducer,
+  orderPay: ORDER_REDUCERS.orderPayReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
