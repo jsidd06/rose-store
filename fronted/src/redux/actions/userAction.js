@@ -45,6 +45,7 @@ export const sign_out = () => (dispatch) => {
   localStorage.removeItem("cartItems");
   localStorage.removeItem("shippingAddress");
   dispatch({ type: TYPE.USER_SIGN_OUT });
+  document.location.href = "/signin";
 };
 
 export const detailsUser = (userId) => async (dispatch, getState) => {
@@ -124,5 +125,24 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({ type: TYPE.USER_DELETE_FAIL, payload: message });
+  }
+};
+
+export const updateUser = (user) => async (dispatch, getState) => {
+  dispatch({ type: TYPE.USER_UPDATE_PROFILE_REQUEST, payload: user });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.put(`/api/users/${user._id}`, user, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: TYPE.USER_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPE.USER_UPDATE_FAIL, payload: message });
   }
 };
