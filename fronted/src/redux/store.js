@@ -33,6 +33,7 @@ const reducer = combineReducers({
   orderMineList: ORDER_REDUCERS.orderMineListReducer,
   userDetails: USER_REDUCERS.userDetailsReducer,
   userUpdateProfile: USER_REDUCERS.userUpdateProfileReducer,
+  productCreate: PRODUCT_REDUCERS.productCreateReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

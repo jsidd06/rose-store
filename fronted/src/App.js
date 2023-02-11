@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import AdminRoute from "./components/AdminRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import { sign_out } from "./redux/actions/userAction";
 import CartScreen from "./screens/CartScreen";
@@ -9,6 +10,7 @@ import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import OrderScreen from "./screens/OrderScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import ProductListScreen from "./screens/ProductListScreen";
 import ProductScreen from "./screens/ProductScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -103,6 +105,10 @@ function App() {
             <Route path="/orderhistory" element={<OrderHistoryScreen />} />
             <Route path="/cart/:id?" element={<CartScreen />} />
             <Route path="/signin" element={<SignInScreen />} />
+            <Route
+              path="/productlist"
+              element={<AdminRoute Components={ProductListScreen} />}
+            />
           </Routes>
         </main>
         <footer className="row center">All right reserved</footer>

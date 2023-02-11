@@ -32,3 +32,29 @@ export const detailsProduct = (productId) => async (dispatch) => {
     });
   }
 };
+
+export const createProduct = () => async (dispatch, getState) => {
+  dispatch({ type: TYPES.PRODUCT_CREATE_REQUEST });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.post(
+      EndPoint.ALL_PRODUCT_LIST,
+      {},
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+    dispatch({
+      type: TYPES.PRODUCT_CREATE_SUCCESS,
+      payload: data.product,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPES.PRODUCT_CREATE_FAIL, payload: message });
+  }
+};

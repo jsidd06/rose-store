@@ -197,3 +197,8 @@
     1. Create Admin Menu
     2. Create Admin Middleware in Backend
     3. Create Admin Route in Frontend
+35. Create Product
+    1. build create product api
+    2. build Create Product button
+    3. define product create constant, action and reducer
+    4. use action in Product List Screen

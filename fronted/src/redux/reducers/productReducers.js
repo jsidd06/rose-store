@@ -31,3 +31,18 @@ export const productDetailsReducer = (
       return state;
   }
 };
+
+export const productCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case TYPE.PRODUCT_CREATE_REQUEST:
+      return { loading: true };
+    case TYPE.PRODUCT_CREATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+    case TYPE.PRODUCT_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+    case TYPE.PRODUCT_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
