@@ -132,3 +132,26 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
     dispatch({ type: TYPES.ORDER_DELETE_FAIL, payload: message });
   }
 };
+
+export const deliverOrder = (orderId) => async (dispatch, getState) => {
+  dispatch({ type: TYPES.ORDER_DELIVER_REQUEST, payload: orderId });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = Axios.put(
+      `/api/orders/${orderId}/deliver`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+    dispatch({ type: TYPES.ORDER_DELIVER_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPES.ORDER_DELIVER_FAIL, payload: message });
+  }
+};
