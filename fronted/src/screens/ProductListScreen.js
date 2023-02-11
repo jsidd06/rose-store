@@ -13,7 +13,7 @@ import {
   PRODUCT_DELETE_RESET,
 } from "../redux/constants/productConstants";
 
-export default function ProductListScreen() {
+export default function ProductListScreen(props) {
   const navigate = useNavigate();
   const { pageNumber = 1 } = useParams();
   const { pathname } = useLocation();

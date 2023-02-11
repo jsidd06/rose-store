@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AdminRoute from "./components/AdminRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import SellerRoute from "./components/SellerRoute";
 import { sign_out } from "./redux/actions/userAction";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -70,6 +71,21 @@ function App() {
                 <Link to="/signin">Sign In</Link>
               </Fragment>
             )}
+            {userInfo && userInfo.isSeller && (
+              <div className="dropdown">
+                <Link to="#admin">
+                  Seller <i className="fa fa-caret-down"></i>
+                </Link>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/productlist/seller">Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderlist/seller">Orders</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
                 <Link to="#admin">
@@ -125,6 +141,14 @@ function App() {
             <Route
               path="/user/:id/edit"
               element={<AdminRoute Components={UserEditScreen} />}
+            />
+            <Route
+              path="/productlist/seller"
+              element={<SellerRoute Components={ProductListScreen} />}
+            />
+            <Route
+              path="/orderlist/seller"
+              element={<SellerRoute Components={OrderListScreen} />}
             />
           </Routes>
         </main>
