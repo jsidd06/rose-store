@@ -35,6 +35,7 @@ const reducer = combineReducers({
   userUpdateProfile: USER_REDUCERS.userUpdateProfileReducer,
   productCreate: PRODUCT_REDUCERS.productCreateReducer,
   productUpdate: PRODUCT_REDUCERS.productUpdateReducer,
+  orderList: ORDER_REDUCERS.orderListReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -93,3 +93,23 @@ export const listOrderMine = () => async (dispatch, getState) => {
     dispatch({ type: TYPES.ORDER_MINE_LIST_FAIL, payload: message });
   }
 };
+
+export const listOrders = () => async (dispatch, getState) => {
+  dispatch({ type: TYPES.ORDER_LIST_REQUEST });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.get("/api/orders", {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    console.log(data);
+    dispatch({ type: TYPES.ORDER_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPES.ORDER_LIST_FAIL, payload: message });
+  }
+};
