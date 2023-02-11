@@ -58,3 +58,22 @@ export const createProduct = () => async (dispatch, getState) => {
     dispatch({ type: TYPES.PRODUCT_CREATE_FAIL, payload: message });
   }
 };
+
+export const updateProduct = (product) => async (dispatch, getState) => {
+  dispatch({ type: TYPES.PRODUCT_UPDATE_REQUEST, payload: product });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.put(`/api/products/${product._id}`, product, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: TYPES.PRODUCT_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPES.PRODUCT_UPDATE_FAIL, error: message });
+  }
+};

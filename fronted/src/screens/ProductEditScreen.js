@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { detailsProduct } from "../redux/actions/productActions";
+import { detailsProduct, updateProduct } from "../redux/actions/productActions";
+import { PRODUCT_UPDATE_RESET } from "../redux/constants/productConstants";
 
 export default function ProductEditScreen() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -17,9 +19,19 @@ export default function ProductEditScreen() {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!product || product._id !== id) {
+    if (successUpdate) {
+      navigate("/productlist");
+    }
+    if (!product || product._id !== id || successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(detailsProduct(id));
     } else {
       setName(product.name);
@@ -30,10 +42,22 @@ export default function ProductEditScreen() {
       setBrand(product.brand);
       setDescription(product.description);
     }
-  }, [product, dispatch, id]);
+  }, [product, dispatch, id, successUpdate, navigate]);
   const submitHandler = (e) => {
     e.preventDefault();
     // TODO: dispatch update product
+    dispatch(
+      updateProduct({
+        _id: id,
+        name,
+        price,
+        image,
+        category,
+        brand,
+        countInStock,
+        description,
+      })
+    );
   };
   return (
     <div>
@@ -41,6 +65,8 @@ export default function ProductEditScreen() {
         <div>
           <h1>Edit Product {id}</h1>
         </div>
+        {loadingUpdate && <LoadingBox></LoadingBox>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (

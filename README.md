@@ -202,8 +202,13 @@
     2. build Create Product button
     3. define product create constant, action and reducer
     4. use action in Product List Screen
-    5. create edit screen
-    6. define state
-    7. create fields
-    8. load product details
-    9. add to routes
+36. Build Product Edit Screen
+    1. create edit screen
+    2. define state
+    3. create fields
+    4. load product details
+    5. add to routes
+37. Update Product
+    1. define update api
+    2. define product update constant, action and reducer
+    3. use action in Product Edit Screen

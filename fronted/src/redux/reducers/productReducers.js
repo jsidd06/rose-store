@@ -43,3 +43,18 @@ export const productCreateReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const productUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case TYPE.PRODUCT_UPDATE_REQUEST:
+      return { loading: true };
+    case TYPE.PRODUCT_UPDATE_SUCCESS:
+      return { loading: false, success: true };
+    case TYPE.PRODUCT_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    case TYPE.PRODUCT_UPDATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
