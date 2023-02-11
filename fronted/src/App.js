@@ -8,6 +8,7 @@ import OrderScreen from "./screens/OrderScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import ProductScreen from "./screens/ProductScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SignInScreen from "./screens/SignInScreen";
@@ -44,6 +45,12 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
+                    <Link to="/profile">User Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderhistory">Order History</Link>
+                  </li>
+                  <li>
                     <Link to="#sign_out" onClick={signOutHandler}>
                       Sign Out
                     </Link>
@@ -62,6 +69,7 @@ function App() {
             <Route path="/" element={<HomeScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/payment" element={<PaymentMethodScreen />} />
+            <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />
