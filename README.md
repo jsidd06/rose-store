@@ -311,3 +311,7 @@ Contact Instructor : Siddharth Jain
     1. create delete api in backend
     2. create delete constants, action and reducer
     3. use it in product list screen
+41. Delete Order
+
+    1. create delete order action and reducer
+    2. add order delete action to order list

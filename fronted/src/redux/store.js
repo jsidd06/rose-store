@@ -37,6 +37,7 @@ const reducer = combineReducers({
   productUpdate: PRODUCT_REDUCERS.productUpdateReducer,
   orderList: ORDER_REDUCERS.orderListReducer,
   productDelete: PRODUCT_REDUCERS.productDeleteReducer,
+  orderDelete: ORDER_REDUCERS.orderDeleteReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
