@@ -2,10 +2,6 @@
 
 ![rose store](/template/images/p2.png)
 
-## PLEASE DO NOT SEND PULL REQUEST
-
-## ALL PRs WILL BE REJECTED
-
 # React & Node- Full ECommerce [2023]
 
 Welcome to my React and Node project to build a fully-functional e-commerce website exactly like amazon. Open your code editor and follow me for the next hours to build an e-commerce website using MERN stack (MongoDB, ExpressJS, React and Node.JS).
@@ -17,14 +13,12 @@ Welcome to my React and Node project to build a fully-functional e-commerce webs
 
 ## You Will Get
 
-- HTML5 and CSS3: Semantic Elements, CSS Grid, Flexbox
+- HTML5 and CSS3: Semantic Elements, CSS Grid,
 - React: Components, Props, Events, Hooks, Router, Axios
 - Redux: Store, Reducers, Actions
 - Node & Express: Web API, Body Parser, File Upload, JWT
 - MongoDB: Mongoose, Aggregation
 - Development: ESLint, Babel, Git, Github,
-- Deployment: Heroku
-- Watch React & Node Tutorial
 
 ## Run Locally
 
