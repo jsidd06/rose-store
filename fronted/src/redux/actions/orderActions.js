@@ -72,3 +72,24 @@ export const payOrder =
       dispatch({ type: TYPES.ORDER_PAY_FAIL, payload: message });
     }
   };
+
+export const listOrderMine = () => async (dispatch, getState) => {
+  dispatch({ type: TYPES.ORDER_MINE_LIST_REQUEST });
+  const {
+    userSignIn: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.get("/api/orders/mine", {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({ type: TYPES.ORDER_MINE_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPES.ORDER_MINE_LIST_FAIL, payload: message });
+  }
+};
