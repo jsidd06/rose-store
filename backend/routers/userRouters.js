@@ -2,7 +2,7 @@ import express from "express";
 import data from "../data.js";
 import User from "../models/userModel.js";
 import expressAsyncHandler from "express-async-handler";
-import { generateToken, isAuth } from "../utils.js";
+import { generateToken, isAdmin, isAuth } from "../utils.js";
 import bcrypt from "bcryptjs";
 
 const userRouter = express.Router();
@@ -87,6 +87,16 @@ userRouter.put(
         token: generateToken(updatedUser),
       });
     }
+  })
+);
+
+userRouter.get(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.send(users);
   })
 );
 

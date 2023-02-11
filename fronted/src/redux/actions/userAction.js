@@ -86,3 +86,24 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: TYPE.USER_UPDATE_PROFILE_FAIL, payload: message });
   }
 };
+
+export const listUsers = () => async (dispatch, getState) => {
+  dispatch({ type: TYPE.USER_LIST_REQUEST });
+  try {
+    const {
+      userSignIn: { userInfo },
+    } = getState();
+    const { data } = await Axios.get("/api/users", {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({ type: TYPE.USER_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: TYPE.USER_LIST_FAIL, payload: message });
+  }
+};
