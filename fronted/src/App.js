@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 import { sign_out } from "./redux/actions/userAction";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -70,7 +71,10 @@ function App() {
             <Route path="/" element={<HomeScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/payment" element={<PaymentMethodScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
+            <Route
+              path="/profile"
+              element={<PrivateRoute Components={ProfileScreen} />}
+            />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />

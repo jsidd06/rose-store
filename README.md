@@ -189,3 +189,7 @@
     2. create api for getMyOrders
     3. show orders in profile screen
     4. style orders
+33. Update User Profile
+    1. create user update api
+    2. update user info
+    3. protected Route add
