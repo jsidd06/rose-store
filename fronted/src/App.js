@@ -116,7 +116,7 @@ function App() {
             <Route path="/payment" element={<PaymentMethodScreen />} />
             <Route
               path="/profile"
-              element={<PrivateRoute Components={ProfileScreen} />}
+              element={<PrivateRoute Component={ProfileScreen} />}
             />
             <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
@@ -128,27 +128,27 @@ function App() {
             <Route path="/signin" element={<SignInScreen />} />
             <Route
               path="/productlist"
-              element={<AdminRoute Components={ProductListScreen} />}
+              element={<AdminRoute Component={ProductListScreen} />}
             />
             <Route
               path="/orderlist"
-              element={<AdminRoute Components={OrderListScreen} />}
+              element={<AdminRoute Component={OrderListScreen} />}
             />
             <Route
               path="/userlist"
-              element={<AdminRoute Components={UserListScreen} />}
+              element={<AdminRoute Component={UserListScreen} />}
             />
             <Route
               path="/user/:id/edit"
-              element={<AdminRoute Components={UserEditScreen} />}
+              element={<AdminRoute Component={UserEditScreen} />}
             />
             <Route
               path="/productlist/seller"
-              element={<SellerRoute Components={ProductListScreen} />}
+              element={<SellerRoute Component={ProductListScreen} />}
             />
             <Route
               path="/orderlist/seller"
-              element={<SellerRoute Components={OrderListScreen} />}
+              element={<SellerRoute Component={OrderListScreen} />}
             />
           </Routes>
         </main>

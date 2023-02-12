@@ -1,14 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-export default function SellerRoute(props) {
-  const navigate = useNavigate();
+export default function SellerRoute({ Component }) {
   const userSignIn = useSelector((state) => state.userSignIn);
   const { userInfo } = userSignIn;
-  const { Components } = props;
   if (!userInfo.isAdmin) {
-    navigate = "/signin";
+    return <Navigate to="signin" />;
   }
-  return <Components />;
+  return <Component></Component>;
 }
