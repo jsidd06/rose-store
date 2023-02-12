@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { deleteOrder, listOrders } from "../redux/actions/orderActions";
 import { ORDER_DELETE_RESET } from "../redux/constants/orderConstants";
 
 export default function OrderListScreen(props) {
   const navigate = useNavigate();
-  const sellerMode = props.match.path.indexOf("/seller") >= 0;
+  const { pathname } = useLocation();
+
+  const sellerMode = pathname.indexOf("/seller") >= 0;
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
   const orderDelete = useSelector((state) => state.orderDelete);
