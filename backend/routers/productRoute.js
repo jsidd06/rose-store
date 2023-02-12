@@ -1,6 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
+import { getFullPath } from "../helpers/common.js";
 import Product from "../models/productModel.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
@@ -12,7 +13,12 @@ productRouter.get(
     const seller = req.query.seller || "";
     const sellerFilter = seller ? { seller } : {};
     const products = await Product.find({ ...sellerFilter });
-    res.send(products);
+    let filterProducts = [];
+    products.map((p) => {
+      p.image = getFullPath(req) + p.image;
+      filterProducts.push(p);
+    });
+    res.status(200).json(filterProducts);
   })
 );
 
@@ -29,6 +35,7 @@ productRouter.get(
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
+      product.image = getFullPath(req) + product.image;
       res.send(product);
     } else {
       res.status(404).send({ message: "Product Not Found" });

@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouters.js";
 import productRouter from "./routers/productRoute.js";
 import orderRouter from "./routers/orderRouters.js";
-import path from "path";
 import uploadRouter from "./routers/uploadRouters.js";
 
 // DOTENV
@@ -38,11 +37,8 @@ app.use("/api/orders", orderRouter);
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
-const __dirname = path.resolve();
-app.use(
-  "/backend/uploads",
-  express.static(path.join(__dirname, "/backend/uploads"))
-);
+
+app.use("/uploads", express.static("uploads"));
 // SERVER READY ROUTE
 app.get("/", (req, res) => {
   res.send("server is ready");
