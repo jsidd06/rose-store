@@ -134,11 +134,13 @@ userRouter.put(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
+    const { isSeller, isAdmin } = req.body;
     if (user) {
+      console.log("new", typeof isAdmin === "boolean" ? isAdmin : user.isAdmin);
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.isSeller = req.body.isSeller || user.isSeller;
-      user.isAdmin = req.body.isAdmin || user.isAdmin;
+      user.isSeller = typeof isSeller === "boolean" ? isSeller : user.isSeller;
+      user.isAdmin = typeof isAdmin === "boolean" ? isAdmin : user.isAdmin;
       const updatedUser = await user.save();
       res.send({ message: "User Updated", user: updatedUser });
     } else {
