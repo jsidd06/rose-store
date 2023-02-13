@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AdminRoute from "./components/AdminRoute";
+import ChatBox from "./components/CheckBox";
 import PrivateRoute from "./components/PrivateRoute";
 import SellerRoute from "./components/SellerRoute";
 import { sign_out } from "./redux/actions/userAction";
@@ -20,6 +21,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SignInScreen from "./screens/SignInScreen";
+import SupportScreen from "./screens/SupportScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import UserListScreen from "./screens/UserListScreen";
 
@@ -105,6 +107,9 @@ function App() {
                   <li>
                     <Link to="/userlist">Users</Link>
                   </li>
+                  <li>
+                    <Link to="/support">Support</Link>
+                  </li>
                 </ul>
               </div>
             )}
@@ -132,6 +137,10 @@ function App() {
               element={<AdminRoute Component={ProductListScreen} />}
             />
             <Route
+              path="/support"
+              element={<AdminRoute Component={SupportScreen} />}
+            />
+            <Route
               path="/dashboard"
               element={<AdminRoute Component={DashboardScreen} />}
             />
@@ -157,7 +166,10 @@ function App() {
             />
           </Routes>
         </main>
-        <footer className="row center">All right reserved</footer>
+        <footer className="row center">
+          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
+          <div>All right reserved</div>{" "}
+        </footer>
       </div>
     </BrowserRouter>
   );

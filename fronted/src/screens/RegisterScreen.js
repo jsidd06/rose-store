@@ -27,8 +27,6 @@ export default function RegisterScreen(props) {
   useEffect(() => {
     if (userInfo) {
       navigate("/register");
-    } else {
-      navigate("/");
     }
   }, [userInfo]);
   return (
