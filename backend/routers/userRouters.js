@@ -136,7 +136,6 @@ userRouter.put(
     const user = await User.findById(req.params.id);
     const { isSeller, isAdmin } = req.body;
     if (user) {
-      console.log("new", typeof isAdmin === "boolean" ? isAdmin : user.isAdmin);
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       user.isSeller = typeof isSeller === "boolean" ? isSeller : user.isSeller;

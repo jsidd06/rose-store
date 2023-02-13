@@ -332,3 +332,6 @@ Contact Instructor : Siddharth Jain
     3. list products for seller
     4. list orders for seller
     5. add Seller to Product List and Details Screen
+47. Rate and Review Products
+    1. rate products
+    2. create actions and reducers

@@ -98,3 +98,30 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     dispatch({ type: TYPES.PRODUCT_DELETE_FAIL, payload: message });
   }
 };
+
+export const createReview =
+  (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: TYPES.PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+      userSignIn: { userInfo },
+    } = getState();
+    try {
+      const { data } = await Axios.post(
+        `/api/products/${productId}/reviews`,
+        review,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      dispatch({
+        type: TYPES.PRODUCT_REVIEW_CREATE_SUCCESS,
+        payload: data.review,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: TYPES.PRODUCT_REVIEW_CREATE_FAIL, payload: message });
+    }
+  };
