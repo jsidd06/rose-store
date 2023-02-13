@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import SellerRoute from "./components/SellerRoute";
 import { sign_out } from "./redux/actions/userAction";
 import CartScreen from "./screens/CartScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 import HomeScreen from "./screens/HomeScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import OrderListScreen from "./screens/OrderListScreen";
@@ -129,6 +130,10 @@ function App() {
             <Route
               path="/productlist"
               element={<AdminRoute Component={ProductListScreen} />}
+            />
+            <Route
+              path="/dashboard"
+              element={<AdminRoute Component={DashboardScreen} />}
             />
             <Route
               path="/orderlist"

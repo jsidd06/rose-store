@@ -98,3 +98,19 @@ export const orderDeliverReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const orderSummaryReducer = (
+  state = { loading: true, summary: {} },
+  action
+) => {
+  switch (action.type) {
+    case TYPES.ORDER_SUMMARY_REQUEST:
+      return { loading: true };
+    case TYPES.ORDER_SUMMARY_SUCCESS:
+      return { loading: false, summary: action.payload };
+    case TYPES.ORDER_SUMMARY_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

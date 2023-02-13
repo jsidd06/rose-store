@@ -335,3 +335,6 @@ Contact Instructor : Siddharth Jain
 47. Rate and Review Products
     1. rate products
     2. create actions and reducers
+48. Create Dashboard Screen
+    1. Create chart data in backend
+    2. Build Chart screen
